@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "OwnerAccess",
+      "Effect": "Allow",
+      "Principal": { "AWS": "*" },
+      "Action": [
+        "SNS:GetTopicAttributes", "SNS:SetTopicAttributes", "SNS:AddPermission", "SNS:RemovePermission",
+        "SNS:DeleteTopic", "SNS:Subscribe", "SNS:ListSubscriptionsByTopic", "SNS:Publish"
+      ],
+      "Resource": "TOPIC_ARN",
+      "Condition": { "StringEquals": { "AWS:SourceOwner": "ACCOUNT_ID" } }
+    },
+    {
+      "Sid": "AllowEventBridge",
+      "Effect": "Allow",
+      "Principal": { "Service": "events.amazonaws.com" },
+      "Action": "sns:Publish",
+      "Resource": "TOPIC_ARN"
+    }
+  ]
+}

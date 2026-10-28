@@ -1,0 +1,7 @@
+# generated files with your account values filled in
+*.live.json
+# never commit keys or credentials
+*.pem
+*.csv
+.env
+credentials*

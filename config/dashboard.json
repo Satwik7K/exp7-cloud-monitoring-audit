@@ -1,0 +1,41 @@
+{
+  "widgets": [
+    {
+      "type": "metric", "x": 0, "y": 0, "width": 12, "height": 6,
+      "properties": {
+        "title": "EC2 CPU utilization (%)",
+        "view": "timeSeries", "region": "ap-south-1", "stat": "Average", "period": 300,
+        "metrics": [["AWS/EC2", "CPUUtilization", "InstanceId", "INSTANCE_ID"]]
+      }
+    },
+    {
+      "type": "metric", "x": 12, "y": 0, "width": 12, "height": 6,
+      "properties": {
+        "title": "EC2 network in and out (bytes)",
+        "view": "timeSeries", "region": "ap-south-1", "stat": "Sum", "period": 300,
+        "metrics": [
+          ["AWS/EC2", "NetworkIn", "InstanceId", "INSTANCE_ID"],
+          ["AWS/EC2", "NetworkOut", "InstanceId", "INSTANCE_ID"]
+        ]
+      }
+    },
+    {
+      "type": "metric", "x": 0, "y": 6, "width": 12, "height": 6,
+      "properties": {
+        "title": "EC2 status check failed (0 = healthy)",
+        "view": "timeSeries", "region": "ap-south-1", "stat": "Maximum", "period": 300,
+        "metrics": [["AWS/EC2", "StatusCheckFailed", "InstanceId", "INSTANCE_ID"]]
+      }
+    },
+    {
+      "type": "alarm", "x": 12, "y": 6, "width": 12, "height": 6,
+      "properties": {
+        "title": "Alarm status",
+        "alarms": [
+          "arn:aws:cloudwatch:ap-south-1:ACCOUNT_ID:alarm:exp7-cpu-high",
+          "arn:aws:cloudwatch:ap-south-1:ACCOUNT_ID:alarm:exp7-status-check-failed"
+        ]
+      }
+    }
+  ]
+}
